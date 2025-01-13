@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane id="BorderPane" fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="763.0" prefWidth="532.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.macrobyte.macrobyte.HelloController">
+   <top>
+      <Label id="Banner" prefHeight="44.0" prefWidth="178.0" style="-fx-background-color: #5f0696;" text="    MacroByte | Sleep Mode" textAlignment="CENTER" textFill="#5dee35" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </top>
+   <left>
+      <ListView fx:id="actions" prefHeight="719.0" prefWidth="114.0" BorderPane.alignment="CENTER">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem id="AddItem" mnemonicParsing="false" onAction="#addItem" text="Add" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </ListView>
+   </left>
+   <right>
+      <ListView id="SelectedActions" fx:id="selectedActions" prefHeight="719.0" prefWidth="108.0" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
