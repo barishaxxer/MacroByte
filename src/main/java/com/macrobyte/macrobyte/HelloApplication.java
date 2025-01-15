@@ -30,12 +30,11 @@ public class HelloApplication extends Application {
         });
         stage.setScene(scene);
         stage.show();
+
     }
 
 
     public static void main(String[] args) {
-
-        launch();
         try {
             GlobalScreen.registerNativeHook();
         }
@@ -47,6 +46,9 @@ public class HelloApplication extends Application {
         }
 
         GlobalScreen.addNativeKeyListener(new GlobalKeyListener());
+
+        launch();
+
     }
 }
 
