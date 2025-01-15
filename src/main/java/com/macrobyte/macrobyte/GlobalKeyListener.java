@@ -6,9 +6,37 @@ import com.github.kwhat.jnativehook.keyboard.NativeKeyEvent;
 import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 
 public class GlobalKeyListener implements NativeKeyListener {
-
+    public static String currentKey;
+    private String bufferKey;
     public void nativeKeyPressed(NativeKeyEvent e) {
-        System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
+        bufferKey = NativeKeyEvent.getKeyText(e.getKeyCode());
+        System.out.println("Key Pressed: " + bufferKey);
+        if (!bufferKey.equals("Undefined")){
+            if (bufferKey.equals("Meta")){
+                bufferKey = "Command";
+            }
+            currentKey = bufferKey;
+
+        }
+
+        if (currentKey.equals(HelloController.startKey)){
+
+
+                System.out.println(HelloController.startKey);
+                System.out.println(GlobalKeyListener.currentKey);
+
+                MacroOperations macro = new MacroOperations();
+                macro.runMacro();
+                GlobalKeyListener.currentKey = "Undefined";
+
+
+
+
+
+            }
+
+
+
 
         if (e.getKeyCode() == NativeKeyEvent.VC_ESCAPE) {
             try {
@@ -19,25 +47,4 @@ public class GlobalKeyListener implements NativeKeyListener {
         }
     }
 
-    public void nativeKeyReleased(NativeKeyEvent e) {
-        System.out.println("Key Released: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
-    }
-
-    public void nativeKeyTyped(NativeKeyEvent e) {
-        System.out.println("Key Typed: " + e.getKeyText(e.getKeyCode()));
-    }
-
-    public static void main(String[] args) {
-        try {
-            GlobalScreen.registerNativeHook();
-        }
-        catch (NativeHookException ex) {
-            System.err.println("There was a problem registering the native hook.");
-            System.err.println(ex.getMessage());
-
-            System.exit(1);
-        }
-
-        GlobalScreen.addNativeKeyListener(new GlobalKeyListener());
-    }
 }
