@@ -72,6 +72,11 @@ public class HelloController {
 
     }
 
+    public List<String> getActions(){
+        return selectedActions.getItems();
+
+    }
+
 
 
 
