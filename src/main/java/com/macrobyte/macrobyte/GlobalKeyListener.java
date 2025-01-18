@@ -8,6 +8,8 @@ import com.github.kwhat.jnativehook.keyboard.NativeKeyListener;
 public class GlobalKeyListener implements NativeKeyListener {
     public static String currentKey;
     private String bufferKey;
+    MacroOperations macro = new MacroOperations();
+
     public void nativeKeyPressed(NativeKeyEvent e) {
         bufferKey = NativeKeyEvent.getKeyText(e.getKeyCode());
         System.out.println("Key Pressed: " + bufferKey);
@@ -19,21 +21,26 @@ public class GlobalKeyListener implements NativeKeyListener {
 
         }
 
-        if (currentKey.equals(HelloController.startKey)){
+        if (currentKey != null && currentKey.equals(HelloController.startKey)){
 
 
                 System.out.println(HelloController.startKey);
                 System.out.println(GlobalKeyListener.currentKey);
+                GlobalKeyListener.currentKey = "und";
+                if (macro != null){
+                    macro.runMacro();
+                }else {
+                    System.out.println("macro is null");
+                }
 
-                MacroOperations macro = new MacroOperations();
-                macro.runMacro();
-                GlobalKeyListener.currentKey = "Undefined";
 
 
 
 
 
-            }
+            }else{
+            System.out.println("currentkey is null");
+        }
 
 
 
