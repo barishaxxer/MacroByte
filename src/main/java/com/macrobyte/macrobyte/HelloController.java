@@ -20,7 +20,7 @@ public class HelloController {
     private final String RED_BUTTON = "-fx-background-color:  #c95149;";
     private final String GREEN_BUTTON = "-fx-background-color: green;";
 
-    public static String startKey = "Undefined";
+    public static String startKey = "Undfined";
 
     @FXML
     private ListView<String> actions;
