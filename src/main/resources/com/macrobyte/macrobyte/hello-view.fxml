@@ -9,11 +9,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane id="BorderPane" fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="763.0" prefWidth="532.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.macrobyte.macrobyte.HelloController">
    <top>
-      <Label id="Banner" fx:id="banenr" prefHeight="44.0" prefWidth="178.0" style="-fx-background-color: #5f0696;" text="    MacroByte | Sleep Mode" textAlignment="CENTER" textFill="#5dee35" BorderPane.alignment="CENTER">
+      <Label id="Banner" fx:id="banner" prefHeight="44.0" prefWidth="178.0" style="-fx-background-color: #5f0696;" text="    MacroByte | Sleep Mode" textAlignment="CENTER" textFill="#5dee35" BorderPane.alignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
@@ -41,13 +42,6 @@
                   <Reflection />
                </effect></Button>
          </center>
-         <top>
-            <TextField fx:id="loopnumber" alignment="CENTER" prefHeight="52.0" prefWidth="210.0" promptText="Number of Loop" style="-fx-background-color: YELLOW;" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets left="50.0" right="50.0" />
-               </BorderPane.margin>
-            </TextField>
-         </top>
          <padding>
             <Insets left="50.0" right="50.0" top="50.0" />
          </padding>
@@ -58,6 +52,17 @@
                </BorderPane.margin>
             </Button>
          </bottom>
+         <top>
+            <VBox prefHeight="88.0" prefWidth="190.0" spacing="20.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="loopNumber" alignment="CENTER" prefHeight="94.0" prefWidth="222.0" promptText="Number of Loop" style="-fx-background-color: YELLOW;" />
+                  <TextField promptText="Sleep time (second)" style="-fx-background-color: brown;" />
+               </children>
+               <padding>
+                  <Insets left="30.0" right="30.0" />
+               </padding>
+            </VBox>
+         </top>
       </BorderPane>
    </center>
 </BorderPane>
