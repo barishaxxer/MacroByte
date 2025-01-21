@@ -2,11 +2,9 @@ package com.macrobyte.macrobyte;
 
 
 import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,6 +20,7 @@ public class HelloController {
 
     public static String startKey = "Undfined";
     private Alert a = new Alert(Alert.AlertType.INFORMATION);
+
     @FXML
     private ListView<String> actions;
 
@@ -34,43 +33,47 @@ public class HelloController {
     @FXML
     public TextField loopNumber;
 
-
+    @FXML
+    public TextField sleepVariable;
 
 
     @FXML
-    private  void initialize(){
+    private void initialize() {
 
         actions.getItems().addAll("Right Click", "Left Click", "Simulate Key", "Sleep", "Move Cursor");
+        selectedActions.getItems().addListener(new ListChangeListener<String>() {
+            @Override
+            public void onChanged(Change<? extends String> change) {
+                if(change.toString().equals("Simulate Key")){
 
-
-
-
+                }
+            }
+        });
 
     }
 
 
-
     @FXML
-    protected void addItem(){
+    protected void addItem() {
 
         selectedActions.getItems().add(actions.getSelectionModel().getSelectedItem());
 
 
-
     }
 
     @FXML
-    protected void setRed(){
+    protected void setRed() {
 
         start.setStyle(RED_BUTTON);
     }
+
     @FXML
-    protected void  setGreen(){
+    protected void setGreen() {
         start.setStyle(GREEN_BUTTON);
     }
 
     @FXML
-    protected void setShortcut(){
+    protected void setShortcut() {
         GlobalKeyListener.currentKey = "Undefined777";
         start.setText(HelloApplication.key.getName());
         startKey = HelloApplication.key.getName();
@@ -78,17 +81,18 @@ public class HelloController {
 
     }
 
-    public List<String> getActions(){
+    public List<String> getActions() {
         return selectedActions.getItems();
 
     }
-    public int loopField(){
+
+    public int loopField() {
         int returnValue = 1;
         try {
             if (loopNumber.getText() != null) {
                 returnValue = Integer.parseInt(loopNumber.getText());
             }
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
@@ -105,7 +109,7 @@ public class HelloController {
         return returnValue;
     }
 
-    public void notifyUser(){
+    public void notifyUser() {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -114,9 +118,10 @@ public class HelloController {
         });
     }
 
+    public int getSleep() {
+        return Integer.parseInt(sleepVariable.getText());
 
-
-
+    }
 
 
 }
