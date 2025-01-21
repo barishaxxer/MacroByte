@@ -56,7 +56,7 @@
             <VBox prefHeight="88.0" prefWidth="190.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
                   <TextField fx:id="loopNumber" alignment="CENTER" prefHeight="94.0" prefWidth="222.0" promptText="Number of Loop" style="-fx-background-color: YELLOW;" />
-                  <TextField promptText="Sleep time (second)" style="-fx-background-color: brown;" />
+                  <TextField fx:id="sleepVariable" alignment="CENTER" promptText="Sleep time (second)" style="-fx-background-color: brown;" />
                </children>
                <padding>
                   <Insets left="30.0" right="30.0" />
