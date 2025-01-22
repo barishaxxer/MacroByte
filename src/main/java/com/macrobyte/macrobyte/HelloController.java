@@ -4,8 +4,14 @@ package com.macrobyte.macrobyte;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
 import java.util.List;
+import java.util.Scanner;
 
 
 public class HelloController {
@@ -36,6 +42,9 @@ public class HelloController {
     @FXML
     public TextField sleepVariable;
 
+    private int x;
+    private int y;
+
 
     @FXML
     private void initialize() {
@@ -44,9 +53,16 @@ public class HelloController {
         selectedActions.getItems().addListener(new ListChangeListener<String>() {
             @Override
             public void onChanged(Change<? extends String> change) {
-                if(change.toString().equals("Simulate Key")){
+                while (change.next()) {
+                    for (String s : change.getAddedSubList()) {
 
+                        if (s.strip().equals("Move Cursor")) {
+                            getCoordinates();
+                        }
+
+                    }
                 }
+
             }
         });
 
@@ -120,6 +136,38 @@ public class HelloController {
 
     public int getSleep() {
         return Integer.parseInt(sleepVariable.getText());
+
+    }
+
+    private void getCoordinates() {
+        Stage second = new Stage();
+        second.initModality(Modality.APPLICATION_MODAL);
+        second.setTitle("Coordinates");
+        Label xLabel = new Label("x coordinate");
+        TextField xCoordinate = new TextField();
+        Label yLabel = new Label(("y coordinate"));
+        TextField yCoordinate = new TextField();
+        GridPane pane = new GridPane();
+        pane.setHgap(15);
+        pane.setVgap(15);
+
+        Button confirm = new Button("Confirm");
+        confirm.setOnAction(e -> {
+            x = Integer.parseInt(xCoordinate.getText());
+            y = Integer.parseInt(yCoordinate.getText());
+            second.close();
+
+
+        });
+        pane.add(xLabel, 0, 0);
+        pane.add(xCoordinate, 0, 1);
+        pane.add(yLabel, 2, 0);
+        pane.add(yCoordinate, 2, 1);
+        pane.add(confirm, 1, 3);
+        Scene scene = new Scene(pane, 400, 150);
+        second.setScene(scene);
+        second.show();
+
 
     }
 
