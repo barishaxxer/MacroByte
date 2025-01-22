@@ -47,6 +47,8 @@ public class MacroOperations {
                     } catch (Exception e) {
                         System.out.println("Something went wrong.");
                     }
+                } else if (s.strip().equals("Move Cursor")) {
+
                 }
 
             }
