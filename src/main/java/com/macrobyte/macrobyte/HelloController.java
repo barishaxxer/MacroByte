@@ -10,6 +10,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -42,6 +44,9 @@ public class HelloController {
     @FXML
     public TextField sleepVariable;
 
+    private HashMap<String, Integer> coordinates = new HashMap<>();
+
+    private int tracker = 0;
     private int x;
     private int y;
 
@@ -57,7 +62,7 @@ public class HelloController {
                     for (String s : change.getAddedSubList()) {
 
                         if (s.strip().equals("Move Cursor")) {
-                            getCoordinates();
+                            getCoordinatesFromUser();
                         }
 
                     }
@@ -139,7 +144,7 @@ public class HelloController {
 
     }
 
-    private void getCoordinates() {
+    private void getCoordinatesFromUser() {
         Stage second = new Stage();
         second.initModality(Modality.APPLICATION_MODAL);
         second.setTitle("Coordinates");
@@ -153,8 +158,10 @@ public class HelloController {
 
         Button confirm = new Button("Confirm");
         confirm.setOnAction(e -> {
-            x = Integer.parseInt(xCoordinate.getText());
-            y = Integer.parseInt(yCoordinate.getText());
+            coordinates.put("xCoordinate" + tracker,Integer.parseInt(xCoordinate.getText()));
+            coordinates.put("yCoordinate" + tracker, Integer.parseInt(yCoordinate.getText()));
+            tracker++;
+
             second.close();
 
 
@@ -169,6 +176,11 @@ public class HelloController {
         second.show();
 
 
+    }
+
+    public HashMap<String, Integer> getCoordinates(){
+
+        return coordinates;
     }
 
 
