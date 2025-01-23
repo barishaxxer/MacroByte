@@ -21,7 +21,7 @@
       </Label>
    </top>
    <left>
-      <ListView fx:id="actions" prefHeight="719.0" prefWidth="114.0" BorderPane.alignment="CENTER">
+      <ListView fx:id="actions" prefHeight="719.0" prefWidth="114.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
          <contextMenu>
             <ContextMenu>
                <items>
@@ -32,7 +32,7 @@
       </ListView>
    </left>
    <right>
-      <ListView id="SelectedActions" fx:id="selectedActions" prefHeight="719.0" prefWidth="108.0" BorderPane.alignment="CENTER" />
+      <ListView id="SelectedActions" fx:id="selectedActions" prefHeight="719.0" prefWidth="108.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER" />
    </right>
    <center>
       <BorderPane prefHeight="663.0" prefWidth="310.0" BorderPane.alignment="CENTER">

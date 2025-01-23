@@ -55,6 +55,57 @@ public class HelloController {
     private void initialize() {
 
         actions.getItems().addAll("Right Click", "Left Click", "Simulate Key", "Sleep", "Move Cursor");
+        selectedActions.setCellFactory(lv -> new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle(
+                            "-fx-background-color: linear-gradient(to bottom, #FF8A80, #FF80AB);" +
+                                    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);" +
+                                    "-fx-border-color: #FF80AB;" +
+                                    "-fx-border-radius: 10;" +
+                                    "-fx-background-radius: 10;"
+                    );
+                } else {
+                    setText(item);
+                    setStyle(
+                            "-fx-background-color: linear-gradient(to bottom, #FF8A80, #FF80AB);" +
+                                    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);" +
+                                    "-fx-border-color: #FF80AB;" +
+                                    "-fx-border-radius: 10;" +
+                                    "-fx-background-radius: 10;"
+                    );
+                }
+            }
+        });
+        actions.setCellFactory(lv -> new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setStyle(
+                            "-fx-background-color: linear-gradient(to bottom, #FF8A80, #FF80AB);" +
+                                    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);" +
+                                    "-fx-border-color: #FF80AB;" +
+                                    "-fx-border-radius: 10;" +
+                                    "-fx-background-radius: 10;"
+                    );
+                } else {
+                    setText(item);
+                    setStyle(
+                            "-fx-background-color: linear-gradient(to bottom, #FF8A80, #FF80AB);" +
+                                    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);" +
+                                    "-fx-border-color: #FF80AB;" +
+                                    "-fx-border-radius: 10;" +
+                                    "-fx-background-radius: 10;"
+                    );
+                }
+            }
+        });
+
         selectedActions.getItems().addListener(new ListChangeListener<String>() {
             @Override
             public void onChanged(Change<? extends String> change) {
