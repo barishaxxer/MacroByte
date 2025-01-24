@@ -23,8 +23,13 @@ public class HelloController {
     public ListView<String> selectedActions;
 
 
-    private final String RED_BUTTON = "-fx-background-color:  #c95149;";
-    private final String GREEN_BUTTON = "-fx-background-color: green;";
+    private final String RED_BUTTON = "-fx-background-color: linear-gradient(to right, #f0f2f0, #000c40);"+
+            "-fx-border-radius: 102;"+
+            "-fx-background-radius: 102;"
+            ;
+    private final String GREEN_BUTTON = "-fx-background-color: linear-gradient(to right, #1f4037, #99f2c8);"+
+            "-fx-border-radius: 102;"+
+            "-fx-background-radius: 102;";
 
     public static String startKey = "Undfined";
     private Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -62,20 +67,27 @@ public class HelloController {
                 if (empty || item == null) {
                     setText(null);
                     setStyle(
-                            "-fx-background-color: linear-gradient(to bottom, #FF8A80, #FF80AB);" +
-                                    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);" +
-                                    "-fx-border-color: #FF80AB;" +
-                                    "-fx-border-radius: 10;" +
-                                    "-fx-background-radius: 10;"
+                            "-fx-background-color:linear-gradient(to bottom, #1d4a59, #7a3734);" +
+
+                                    "-fx-text-fill: #FFFFFF;" +
+                                    "-fx-control-inner-background: #FFFFFF;" +
+
+                                    "-fx-border-radius: 9;" +
+                                    "-fx-background-radius: 9;"+
+                                    "-fx-background-insets: 18;"
                     );
                 } else {
                     setText(item);
                     setStyle(
-                            "-fx-background-color: linear-gradient(to bottom, #FF8A80, #FF80AB);" +
-                                    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);" +
-                                    "-fx-border-color: #FF80AB;" +
-                                    "-fx-border-radius: 10;" +
-                                    "-fx-background-radius: 10;"
+                            "-fx-background-color:linear-gradient(to bottom, #1d4a59, #7a3734);" +
+                                    "-fx-text-fill: #FFFFFF;" +
+
+
+                                    "-fx-background-insets: 18;"+
+                                    "-fx-control-inner-background: #FFFFFF;" +
+
+                                    "-fx-border-radius: 9;" +
+                                    "-fx-background-radius: 9;"
                     );
                 }
             }
@@ -87,20 +99,25 @@ public class HelloController {
                 if (empty || item == null) {
                     setText(null);
                     setStyle(
-                            "-fx-background-color: linear-gradient(to bottom, #FF8A80, #FF80AB);" +
-                                    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);" +
-                                    "-fx-border-color: #FF80AB;" +
-                                    "-fx-border-radius: 10;" +
-                                    "-fx-background-radius: 10;"
+                            "-fx-background-color:linear-gradient(to bottom, #7a3734, #1d4a59);" +
+
+                                    "-fx-background-insets: 18;"+
+                                    "-fx-text-fill: #FFFFFF;" +
+                                    "-fx-control-inner-background: #FFFFFF;" +
+                                    "-fx-border-radius: 9;" +
+                                    "-fx-background-radius: 9;"
                     );
                 } else {
                     setText(item);
                     setStyle(
-                            "-fx-background-color: linear-gradient(to bottom, #FF8A80, #FF80AB);" +
-                                    "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 5);" +
-                                    "-fx-border-color: #FF80AB;" +
-                                    "-fx-border-radius: 10;" +
-                                    "-fx-background-radius: 10;"
+                            "-fx-background-color:linear-gradient(to bottom, #7a3734, #1d4a59);" +
+                            "-fx-background-insets: 18;"+
+
+                                    "-fx-border-width: 2px;"+
+                                    "-fx-text-fill: #FFFFFF;" +
+                                    "-fx-control-inner-background: #FFFFFF;" +
+                                    "-fx-border-radius: 9;" +
+                                    "-fx-background-radius: 9;"
                     );
                 }
             }
@@ -232,6 +249,13 @@ public class HelloController {
     public HashMap<String, Integer> getCoordinates(){
 
         return coordinates;
+    }
+
+    @FXML
+    protected void triggerMacro(){
+        MacroOperations macro = new MacroOperations();
+        macro.robot.mouseMove(600,600);
+        macro.runMacro();
     }
 
 
