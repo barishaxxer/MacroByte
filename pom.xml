@@ -72,7 +72,7 @@
               <transformers>
                 <transformer implementation=
                                      "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>com.macrobyte.macrobyte.Main</mainClass>
+                  <mainClass>com.macrobyte.macrobyte.HelloApplication</mainClass>
                 </transformer>
               </transformers>
             </configuration>
