@@ -7,21 +7,20 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="BorderPane" fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="763.0" prefWidth="532.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.macrobyte.macrobyte.HelloController">
+<BorderPane id="BorderPane" fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="763.0" prefWidth="532.0" style="-fx-background-color: linear-gradient(to right, #1D4350,#A43931);" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.macrobyte.macrobyte.HelloController">
    <top>
-      <Label id="Banner" fx:id="banner" prefHeight="44.0" prefWidth="178.0" style="-fx-background-color: #5f0696;" text="    MacroByte | Sleep Mode" textAlignment="CENTER" textFill="#5dee35" BorderPane.alignment="CENTER">
+      <Label id="Banner" fx:id="banner" prefHeight="44.0" prefWidth="178.0" style="-fx-background-color: linear-gradient(to right, #59c173, #a17fe0, #5d26c1); -fx-background-radius: 18;" text="    MacroByte | Sleep Mode" textAlignment="CENTER" textFill="#080a08" BorderPane.alignment="CENTER">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
    </top>
    <left>
-      <ListView fx:id="actions" prefHeight="719.0" prefWidth="114.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER">
+      <ListView fx:id="actions" prefHeight="719.0" prefWidth="114.0" style="-fx-background-color: transparent; -fx-background-insets: 10;" BorderPane.alignment="CENTER">
          <contextMenu>
             <ContextMenu>
                <items>
@@ -37,16 +36,16 @@
    <center>
       <BorderPane prefHeight="663.0" prefWidth="310.0" BorderPane.alignment="CENTER">
          <center>
-            <Button fx:id="start" mnemonicParsing="false" onMouseEntered="#setGreen" onMouseExited="#setRed" prefHeight="71.0" prefWidth="177.0" style="-fx-background-color: #c95149; -fx-border-color: white;" text="START" BorderPane.alignment="CENTER">
-               <effect>
-                  <Reflection />
-               </effect></Button>
+            <Button fx:id="start" mnemonicParsing="false" onAction="#triggerMacro" onMouseEntered="#setGreen" onMouseExited="#setRed" prefHeight="71.0" prefWidth="177.0" style="-fx-background-color: linear-gradient(to right, #f0f2f0, #000c40); -fx-border-radius: 102; -fx-background-radius: 102;" text="START" BorderPane.alignment="CENTER">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Button>
          </center>
          <padding>
             <Insets left="50.0" right="50.0" top="50.0" />
          </padding>
          <bottom>
-            <Button fx:id="shortcut" mnemonicParsing="false" onAction="#setShortcut" prefHeight="53.0" prefWidth="175.0" text="Assign Shortcut to Macro" BorderPane.alignment="CENTER">
+            <Button fx:id="shortcut" mnemonicParsing="false" onAction="#setShortcut" prefHeight="53.0" prefWidth="175.0" style="-fx-background-color: linear-gradient(to right, #0f2027, #203a43, #2c5364);" text="Assign Shortcut to Macro" textFill="WHITE" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets bottom="60.0" top="-40.0" />
                </BorderPane.margin>
@@ -55,8 +54,8 @@
          <top>
             <VBox prefHeight="88.0" prefWidth="190.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="loopNumber" alignment="CENTER" prefHeight="94.0" prefWidth="222.0" promptText="Number of Loop" style="-fx-background-color: YELLOW;" />
-                  <TextField fx:id="sleepVariable" alignment="CENTER" promptText="Sleep time (second)" style="-fx-background-color: brown;" />
+                  <TextField fx:id="loopNumber" alignment="CENTER" prefHeight="94.0" prefWidth="222.0" promptText="Number of Loop" style="-fx-background-color: linear-gradient(to right, #0f2027, #203a43, #2c5364); -fx-background-insets: -9; -fx-background-radius: 21; -fx-text-fill: #FFFFFF;" />
+                  <TextField fx:id="sleepVariable" alignment="CENTER" promptText="Sleep time (second)" style="-fx-background-color: linear-gradient(to right, #0f2027, #203a43, #2c5364); -fx-background-insets: -9; -fx-background-radius: 21; -fx-text-fill: #FFFFFF;" />
                </children>
                <padding>
                   <Insets left="30.0" right="30.0" />
