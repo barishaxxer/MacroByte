@@ -25,7 +25,6 @@ public class HelloApplication extends Application {
 
         Scene scene = new Scene(fxmlLoader.load());
         controller = fxmlLoader.getController();
-
         stage.setTitle("MacroByte!");
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
