@@ -14,7 +14,7 @@ public class MacroOperations {
     int loopTime;
     int sleepTime;
     HashMap<String, Integer> coordinates;
-    int track = 0;
+
     Robot robot;
 
 
@@ -38,6 +38,7 @@ public class MacroOperations {
 
         HelloApplication.controller.notifyUser();
         for (int i = 0; i < loopTime; i++) {
+            int track = 0;
             for (String s : actionOrder) {
                 if (s.strip().equals("Left Click")) {
                     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
