@@ -10,11 +10,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
-
 
 public class HelloController {
 
@@ -23,12 +20,11 @@ public class HelloController {
     public ListView<String> selectedActions;
 
 
-    private final String RED_BUTTON = "-fx-background-color: linear-gradient(to right, #f0f2f0, #000c40);"+
-            "-fx-border-radius: 102;"+
-            "-fx-background-radius: 102;"
-            ;
-    private final String GREEN_BUTTON = "-fx-background-color: linear-gradient(to right, #1f4037, #99f2c8);"+
-            "-fx-border-radius: 102;"+
+    private final String RED_BUTTON = "-fx-background-color: linear-gradient(to right, #f0f2f0, #000c40);" +
+            "-fx-border-radius: 102;" +
+            "-fx-background-radius: 102;";
+    private final String GREEN_BUTTON = "-fx-background-color: linear-gradient(to right, #1f4037, #99f2c8);" +
+            "-fx-border-radius: 102;" +
             "-fx-background-radius: 102;";
 
     public static String startKey = "Undfined";
@@ -52,8 +48,6 @@ public class HelloController {
     private HashMap<String, Integer> coordinates = new HashMap<>();
 
     private int tracker = 0;
-    private int x;
-    private int y;
 
 
     @FXML
@@ -73,7 +67,7 @@ public class HelloController {
                                     "-fx-control-inner-background: #FFFFFF;" +
 
                                     "-fx-border-radius: 9;" +
-                                    "-fx-background-radius: 9;"+
+                                    "-fx-background-radius: 9;" +
                                     "-fx-background-insets: 18;"
                     );
                 } else {
@@ -83,7 +77,7 @@ public class HelloController {
                                     "-fx-text-fill: #FFFFFF;" +
 
 
-                                    "-fx-background-insets: 18;"+
+                                    "-fx-background-insets: 18;" +
                                     "-fx-control-inner-background: #FFFFFF;" +
 
                                     "-fx-border-radius: 9;" +
@@ -101,7 +95,7 @@ public class HelloController {
                     setStyle(
                             "-fx-background-color:linear-gradient(to bottom, #7a3734, #1d4a59);" +
 
-                                    "-fx-background-insets: 18;"+
+                                    "-fx-background-insets: 18;" +
                                     "-fx-text-fill: #FFFFFF;" +
                                     "-fx-control-inner-background: #FFFFFF;" +
                                     "-fx-border-radius: 9;" +
@@ -111,9 +105,9 @@ public class HelloController {
                     setText(item);
                     setStyle(
                             "-fx-background-color:linear-gradient(to bottom, #7a3734, #1d4a59);" +
-                            "-fx-background-insets: 18;"+
+                                    "-fx-background-insets: 18;" +
 
-                                    "-fx-border-width: 2px;"+
+                                    "-fx-border-width: 2px;" +
                                     "-fx-text-fill: #FFFFFF;" +
                                     "-fx-control-inner-background: #FFFFFF;" +
                                     "-fx-border-radius: 9;" +
@@ -226,7 +220,7 @@ public class HelloController {
 
         Button confirm = new Button("Confirm");
         confirm.setOnAction(e -> {
-            coordinates.put("xCoordinate" + tracker,Integer.parseInt(xCoordinate.getText()));
+            coordinates.put("xCoordinate" + tracker, Integer.parseInt(xCoordinate.getText()));
             coordinates.put("yCoordinate" + tracker, Integer.parseInt(yCoordinate.getText()));
             tracker++;
 
@@ -246,15 +240,15 @@ public class HelloController {
 
     }
 
-    public HashMap<String, Integer> getCoordinates(){
+    public HashMap<String, Integer> getCoordinates() {
 
         return coordinates;
     }
 
     @FXML
-    protected void triggerMacro(){
+    protected void triggerMacro() {
         MacroOperations macro = new MacroOperations();
-        macro.robot.mouseMove(600,600);
+        macro.robot.mouseMove(600, 600);
         macro.runMacro();
     }
 
