@@ -1,7 +1,6 @@
 package com.macrobyte.macrobyte;
 
 
-
 import java.awt.Robot;
 import java.awt.AWTException;
 import java.awt.event.InputEvent;
@@ -19,7 +18,6 @@ public class MacroOperations {
 
 
     public MacroOperations() {
-
 
 
         try {
