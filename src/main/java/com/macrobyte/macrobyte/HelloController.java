@@ -179,10 +179,16 @@ public class HelloController {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
+                       String content;
+                    if (e.getMessage().equals("For input string: \"\"")){
+                        content = "The Loop field must not be empty.";
+                    }else{
+                        content = "The loop field can only be an integer.";
+                    }
                     a.setAlertType(Alert.AlertType.INFORMATION);
                     a.setTitle("MacroByte");
                     a.setHeaderText("Invalid input");
-                    a.setContentText("The loop field can be only integer.");
+                    a.setContentText(content);
                     a.show();
                 }
             });
