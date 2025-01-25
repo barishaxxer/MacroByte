@@ -3,13 +3,16 @@ package com.macrobyte.macrobyte;
 
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,6 +49,8 @@ public class HelloController {
     public TextField sleepVariable;
 
     private HashMap<String, Integer> coordinates = new HashMap<>();
+
+    private final List<String> keys = new ArrayList<>();
 
     private int tracker = 0;
 
@@ -126,13 +131,13 @@ public class HelloController {
                         if (s.strip().equals("Move Cursor")) {
                             getCoordinatesFromUser();
                         }
-
+                        if (s.strip().equals("Simulate Key")) {
+                            getKeyFromUser();
+                        }
                     }
                 }
-
             }
         });
-
     }
 
 
@@ -179,10 +184,16 @@ public class HelloController {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
+                       String content;
+                    if (e.getMessage().equals("For input string: \"\"")){
+                        content = "The Loop field must not be empty.";
+                    }else{
+                        content = "The loop field can only be an integer.";
+                    }
                     a.setAlertType(Alert.AlertType.INFORMATION);
                     a.setTitle("MacroByte");
                     a.setHeaderText("Invalid input");
-                    a.setContentText("The loop field can be only integer.");
+                    a.setContentText(content);
                     a.show();
                 }
             });
@@ -240,9 +251,43 @@ public class HelloController {
 
     }
 
-    public HashMap<String, Integer> getCoordinates() {
+    private void getKeyFromUser() {
+        Stage second = new Stage();
+        second.initModality(Modality.APPLICATION_MODAL);
+        second.setTitle("Keys");
+        Label keyLabel = new Label("key");
+        TextField key = new TextField();
+        GridPane pane = new GridPane();
+        pane.setHgap(15);
+        pane.setVgap(15);
 
+        Button confirm = new Button("Confirm");
+        confirm.setOnAction(e -> {
+            keys.add(key.getText());
+            second.close();
+        });
+        Button capture = new Button("Capture");
+        capture.setOnAction(e -> {
+            pane.setOnKeyPressed(keyEvent -> {
+                key.setText(keyEvent.getCode().getName());
+            });
+        });
+
+        pane.add(keyLabel, 2, 0);
+        pane.add(key, 2, 1);
+        pane.add(confirm, 3, 3);
+        pane.add(capture, 3, 1);
+        Scene scene = new Scene(pane, 400, 150);
+        second.setScene(scene);
+        second.show();
+    }
+
+    public HashMap<String, Integer> getCoordinates() {
         return coordinates;
+    }
+
+    public List<String> getKeys() {
+        return keys;
     }
 
     @FXML
