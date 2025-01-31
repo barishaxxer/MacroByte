@@ -3,7 +3,11 @@ package com.macrobyte.macrobyte.actions;
 public record LeftClick() implements Action{
 
     @Override
-    public java.lang.String getName() {
+    public String getName() {
         return getClass().getSimpleName();
+    }
+
+    public String getPrintName(){
+        return "Left Click";
     }
 }

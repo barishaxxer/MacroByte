@@ -5,4 +5,8 @@ public record RightClick() implements Action {
     public java.lang.String getName() {
         return getClass().getSimpleName();
     }
+
+    public String getPrintName(){
+        return "Right Click";
+    }
 }

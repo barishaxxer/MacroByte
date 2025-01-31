@@ -5,4 +5,8 @@ public record Sleep(int seconds) implements Action {
     public java.lang.String getName() {
         return getClass().getSimpleName();
     }
+
+    public String getPrintName(){
+        return "Sleep[" + seconds + "]";
+    }
 }
