@@ -6,5 +6,6 @@ module com.macrobyte.macrobyte {
 
     opens com.macrobyte.macrobyte to javafx.fxml;
     exports com.macrobyte.macrobyte;
+    exports com.macrobyte.macrobyte.actions;
 
 }

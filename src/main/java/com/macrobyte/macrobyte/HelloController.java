@@ -1,13 +1,11 @@
 package com.macrobyte.macrobyte;
 
 
+import com.macrobyte.macrobyte.actions.*;
 import javafx.application.Platform;
-import javafx.collections.ListChangeListener;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -15,12 +13,13 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class HelloController {
 
 
     @FXML
-    public ListView<String> selectedActions;
+    public ListView<Action> selectedActions;
 
 
     private final String RED_BUTTON = "-fx-background-color: linear-gradient(to right, #f0f2f0, #000c40);" +
@@ -52,16 +51,14 @@ public class HelloController {
 
     private final List<String> keys = new ArrayList<>();
 
-    private int tracker = 0;
-
 
     @FXML
     private void initialize() {
 
         actions.getItems().addAll("Right Click", "Left Click", "Simulate Key", "Sleep", "Move Cursor");
-        selectedActions.setCellFactory(lv -> new ListCell<String>() {
+        selectedActions.setCellFactory(lv -> new ListCell<>() {
             @Override
-            protected void updateItem(String item, boolean empty) {
+            protected void updateItem(Action item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setText(null);
@@ -76,7 +73,7 @@ public class HelloController {
                                     "-fx-background-insets: 18;"
                     );
                 } else {
-                    setText(item);
+                    setText(item.getPrintName());
                     setStyle(
                             "-fx-background-color:linear-gradient(to bottom, #1d4a59, #7a3734);" +
                                     "-fx-text-fill: #FFFFFF;" +
@@ -122,30 +119,19 @@ public class HelloController {
             }
         });
 
-        selectedActions.getItems().addListener(new ListChangeListener<String>() {
-            @Override
-            public void onChanged(Change<? extends String> change) {
-                while (change.next()) {
-                    for (String s : change.getAddedSubList()) {
-
-                        if (s.strip().equals("Move Cursor")) {
-                            getCoordinatesFromUser();
-                        }
-                        if (s.strip().equals("Simulate Key")) {
-                            getKeyFromUser();
-                        }
-                    }
-                }
-            }
-        });
     }
 
 
     @FXML
     protected void addItem() {
-
-        selectedActions.getItems().add(actions.getSelectionModel().getSelectedItem());
-
+        String name = actions.getSelectionModel().getSelectedItem();
+        switch (name) {
+            case "Move Cursor" -> getCoordinatesFromUser();
+            case "Simulate Key" -> getKeyFromUser();
+            case "Left Click" -> selectedActions.getItems().add(new LeftClick());
+            case "Right Click" -> selectedActions.getItems().add(new RightClick());
+            case "Sleep" -> selectedActions.getItems().add(new Sleep(getSleep()));
+        }
 
     }
 
@@ -169,7 +155,7 @@ public class HelloController {
 
     }
 
-    public List<String> getActions() {
+    public List<Action> getActions() {
         return selectedActions.getItems();
 
     }
@@ -217,7 +203,10 @@ public class HelloController {
 
     }
 
+    // directly adds the MoveCursor action to selectedActions
     private void getCoordinatesFromUser() {
+        final int[] coordinates = new int[2];
+
         Stage second = new Stage();
         second.initModality(Modality.APPLICATION_MODAL);
         second.setTitle("Coordinates");
@@ -231,13 +220,10 @@ public class HelloController {
 
         Button confirm = new Button("Confirm");
         confirm.setOnAction(e -> {
-            coordinates.put("xCoordinate" + tracker, Integer.parseInt(xCoordinate.getText()));
-            coordinates.put("yCoordinate" + tracker, Integer.parseInt(yCoordinate.getText()));
-            tracker++;
-
+            coordinates[0] = Integer.parseInt(xCoordinate.getText());
+            coordinates[1] = Integer.parseInt(yCoordinate.getText());
+            selectedActions.getItems().add(new MoveCursor(coordinates));
             second.close();
-
-
         });
         pane.add(xLabel, 0, 0);
         pane.add(xCoordinate, 0, 1);
@@ -247,10 +233,9 @@ public class HelloController {
         Scene scene = new Scene(pane, 400, 150);
         second.setScene(scene);
         second.show();
-
-
     }
 
+    // directly adds the SimulateKey action to selectedActions
     private void getKeyFromUser() {
         Stage second = new Stage();
         second.initModality(Modality.APPLICATION_MODAL);
@@ -263,7 +248,7 @@ public class HelloController {
 
         Button confirm = new Button("Confirm");
         confirm.setOnAction(e -> {
-            keys.add(key.getText());
+            selectedActions.getItems().add((new SimulateKey(key.getText().toUpperCase())));
             second.close();
         });
         Button capture = new Button("Capture");

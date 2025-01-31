@@ -1,6 +1,10 @@
 package com.macrobyte.macrobyte;
 
 
+import com.macrobyte.macrobyte.actions.Action;
+import com.macrobyte.macrobyte.actions.MoveCursor;
+import com.macrobyte.macrobyte.actions.Sleep;
+
 import java.awt.Robot;
 import java.awt.AWTException;
 import java.awt.event.InputEvent;
@@ -9,7 +13,7 @@ import java.util.List;
 
 public class MacroOperations {
 
-    List<String> actionOrder;
+    List<Action> actionOrder;
     int loopTime;
     int sleepTime;
     HashMap<String, Integer> coordinates;
@@ -36,25 +40,24 @@ public class MacroOperations {
 
         HelloApplication.controller.notifyUser();
         for (int i = 0; i < loopTime; i++) {
-            int track = 0;
-            for (String s : actionOrder) {
-                if (s.strip().equals("Left Click")) {
+            for (Action s : actionOrder) {
+                if(s == null){continue;}
+                if (s.getName().strip().equals("LeftClick")) {
                     robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
                     robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 
-                } else if (s.strip().equals("Right Click")) {
+                } else if (s.getName().strip().equals("RightClick")) {
                     robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
                     robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
-                } else if (s.strip().equals("Sleep")) {
-                    sleepTime = HelloApplication.controller.getSleep();
+                } else if (s.getName().strip().equals("Sleep")) {
+                    sleepTime = ((Sleep)s).seconds();
                     try {
-                        Thread.sleep(sleepTime * 1000);
+                        Thread.sleep(sleepTime * 1000L);
                     } catch (Exception e) {
                         System.out.println("Something went wrong.");
                     }
-                } else if (s.strip().equals("Move Cursor")) {
-                    robot.mouseMove(coordinates.get("xCoordinate" + track), coordinates.get("yCoordinate" + track));
-                    track++;
+                } else if (s.getName().strip().equals("MoveCursor")) {
+                    robot.mouseMove(((MoveCursor)s).x(), ((MoveCursor)s).y());
 
                 }
 
